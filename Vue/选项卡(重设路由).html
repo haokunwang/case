@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li><router-link to='/'>主页</router-link></li>
+			<li><router-link to='/movie'>电影</router-link></li>
+			<li><router-link to='/videos'>视频</router-link></li>
+		</ul>
+		<router-view></router-view>
+	</div>
+	<script src='vue.js'></script>
+	<script src='vue-router.js'></script>
+	<script>
+		var home = Vue.component('home',{
+			template:'<h1>主页</h1>'
+		});
+
+		var movie = Vue.component('movie',{
+			template:'<h1>电影</h1>'
+		});
+
+		var videos = Vue.component('videos',{
+			template:'<h1>视频</h1>'
+		});
+
+		var router = new VueRouter({
+			routes:[
+				{path:'/',component:home},
+				{path:'/movie',component:movie},
+				{path:'/videos',component:videos}
+				]
+		});
+
+		new Vue({
+			el:'#app',
+			router
+		})
+	</script>
+</body>
+</html>

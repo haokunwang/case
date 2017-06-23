@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="../1.jpg" alt="" id="img">
+	<input type="button" value="上一张" id="fbtn">
+	<input type="button" value="下一张" id="lbtn">
+	<script>
+		var apic = ["../1.jpg",
+					"../2.jpg",
+					"../3.jpg",
+					"../4.jpg",
+					"../5.jpg",]
+		var fbtn = document.querySelector("#fbtn");
+		var lbtn = document.querySelector("#lbtn");
+		var img = document.querySelector("#img")
+
+		var index = 0;
+		fbtn.onclick = function(){
+			index--
+			if(index<0){
+				index=apic.length-1;
+			}
+			img.src=apic[index];
+		}
+
+		lbtn.onclick = function(){
+			index++
+			if(index==apic.length){
+				index=0;
+			}
+			img.src=apic[index];
+		}
+	</script>
+</body>
+</html>

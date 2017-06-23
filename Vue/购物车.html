@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		li{
+			list-style: none;
+		}
+		#app{
+			border: 2px solid blue;
+			width: 500px;
+			height: 700px;
+			margin: 0 auto;
+		}
+		.box{
+			width: 165.6px;
+			height: 150px;
+			border: 1px solid black;
+			float: left;
+		}
+		.box p{
+			text-align: center;
+		}
+		.btn{
+			/*margin:0 auto;*/
+		}
+		.name{
+			font-size: 40px;
+		}
+		.furitlist li{
+			width: 497px;
+			height: 100px;
+			border-top: 1px solid red;
+			border-bottom: 1px solid red;
+			float: left;
+		}
+		.sum{
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="box" v-for='furit in furitlist'>
+			<p class="name">{{furit.name}}</p>
+			<p>单价：{{furit.uprice}}元</p>
+			<button class="btn" v-on:click='insert(furit)'>购买</button>
+		</div>
+		<h1 class="sum">总价：{{total.toFixed(2)}}</h1>
+		<div class="box1">
+			<ul class="furitlist">
+				<li v-for='(val,index) in cart'>
+					<p>名称：{{val.name}}</p>
+					<p>价格：{{(val.uprice * val.num).toFixed(2)}}</p>
+					<span>数量：</span>
+						<button v-on:click='sub(val,index)'>-</button>
+						<span>{{val.num}}</span>
+						<button v-on:click='add(val)'>+</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src='vue.js'></script>
+
+	<script>
+		new Vue({
+			el:'#app',
+			data:{
+				total:0,
+				furitlist:[{name:'苹果',price:0,num:0,uprice:1.6},
+						{name:'香蕉',price:0,num:0,uprice:2.0},
+						{name:'鸭梨',price:0,num:0,uprice:2.3}
+				],
+				cart:[]
+			},
+			methods:{
+				insert:function(furit){
+					for(var i = 0;i<this.cart.length;i++){
+						if(this.cart[i] === furit){
+							this.cart[i].num++;
+							this.getPrice();
+							return
+						}
+					}
+					this.cart.push(furit)
+				},
+				getPrice:function(){
+					var sumprice = 0;
+					this.furitlist.map(function(val,index){
+						var sp = val.num * val.uprice;
+						sumprice += sp;
+					})
+					this.total = sumprice
+				},
+				sub:function(val,index){
+					if(val.num > 0){
+						val.num--;
+						this.getPrice();
+					}else{
+						this.cart.splice(index,1);
+						this.getPrice();
+					}
+				},
+				add:function(val){
+					val.num++;
+					this.getPrice();
+				}
+			}
+		})
+	</script>
+</body>
+</html>

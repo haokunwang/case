@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = [1,5,3,2,8,9,15,7,11];
+		
+		function sort(arr){
+
+			var len = arr.length;
+			if(len === 1){
+				return arr;
+			}
+			var mid = Math.floor(len/2);
+			var left = arr.slice(0,mid);
+			var right = arr.slice(mid,len);
+
+			// sort(left);
+			// sort(right);
+
+			function merge(leftArr,rightArr){
+				var newArr = [];
+				var i = 0;
+				var j = 0;
+				while(i<leftArr.length && j<rightArr.length){
+					if(leftArr[i] < rightArr[j]){
+						newArr.push(leftArr[i++]);
+					}else{
+						newArr.push(rightArr[j++]);
+					}
+				}
+				while(i<leftArr.length){
+					newArr.push(leftArr[i++]);
+				}
+				while(j<right.length){
+					newArr.push(rightArr[j++]);
+				}
+				return newArr;
+			}
+
+			return merge(sort(left),sort(right));
+
+		}
+
+		console.log(sort(arr));
+	</script>
+</body>
+</html>

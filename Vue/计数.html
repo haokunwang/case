@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<p>{{total}}</p>
+		<button v-on:click='addJsq'>添加计数器</button>
+		<ul>
+			<li v-for='(val,index) in jsqList'>
+				<button v-on:click='sub(val)'>-</button>
+				<span>{{val.num}}</span>
+				<button v-on:click='add(val)'>+</button>
+				<button v-on:click='del(val)'>删除</button>
+			</li>
+		</ul>
+	</div>
+	<script src='vue.js'></script>
+	<script>
+		new Vue({
+			el:'#app',
+			data:{
+				total:0,
+				jsqList:[]
+			},
+			methods:{
+				getSum:function(){
+					var sum = 0;
+					this.jsqList.map(function(val,index){
+						sum += val.num;
+					})
+					this.total = sum;
+				},
+				addJsq:function(){
+					this.jsqList.push({num:0})
+				},
+				sub:function(val){
+					val.num--;
+					this.getSum();
+				},
+				add:function(val){
+					val.num++;
+					this.getSum();
+				},
+				del:function(index){
+					this.jsqList.splice(index,1);
+					this.getSum();
+				}
+			}
+		})
+	</script>
+</body>
+</html>

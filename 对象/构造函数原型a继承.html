@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+
+		function Animation(name,age){
+			this.name = name;
+			this.age = age;
+		}
+
+		Animation.prototype = {
+			sayName:function(){
+				console.log('我是' + this.name)
+			}
+		}
+		
+		function Cat(name,age){
+			Animation.call(this,name,age);	
+		}
+
+		Cat.prototype = new Animation();
+		Cat.prototype.constructor = new Animation();
+
+		Cat.prototype.catchfish = function(){
+				console.log('zhuayu')
+			}
+
+		Cat.prototype.eatfish = function(){
+				console.log('chiyu')
+			}
+		var cat = new Cat('miao',2);
+		cat.sayName();
+		cat.catchfish();
+		cat.eatfish();
+	</script>
+	
+</body>
+</html>

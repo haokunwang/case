@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		@keyframes round{
+			from{
+				transform: rotate(0deg);
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		.box{
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			overflow: hidden;
+			animation: round 5s linear infinite;
+		}
+		.stop{
+			animation-play-state: paused;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<img src="../1.jpg" alt="">
+	</div>
+	<script src="../jquery.js"></script>
+	<script>
+		$(".box").click(function(){
+			$(this).toggleClass("stop");
+		})
+	</script>
+</body>
+</html>

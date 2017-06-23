@@ -1,0 +1,220 @@
+/*14.css*/
+body{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	background-color: #eee;
+}
+*{
+	box-sizing: border-box;
+}
+a{
+	text-decoration: none;
+}
+ul,li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+section,header,footer{
+	width: 100%;
+	background-color: #fff;
+}
+img{
+	width: 100%;
+}
+/* top */
+.top{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 12px;
+	height: 30px;
+	background: #fffcec;
+	color: #fbb700;
+}
+
+/* 头部 */
+header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 44px;
+	background: #ff4683;
+	color: #fff;
+	font-size: 16px;
+}
+header a{
+	color: #fff;
+	opacity: 0.6;
+
+}
+header h3{
+	flex: 1 1 auto;
+	display: flex;
+	justify-content: center;
+	/*这是一张图片(没写)文字隐藏*/
+}
+
+/*搜索区域*/
+.search{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	background: #f1f1f1;
+}
+.search form{
+	margin: auto 5px;
+	flex: 1 1 auto;
+	background-color: #fff;
+	height: 20px;
+	border: 1px solid #ddd;
+	border-radius: 15px;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+.search form input{
+	flex: 1 1 auto;
+	border: none;
+	font-size: 14px;
+	padding: 0 5px;
+}
+.search form button{
+	width: 24px;
+	border: none;
+	background: #fff;
+	/*这是一个搜索 i 标签(没写)*/
+}
+/*广告轮播区域*/
+
+/*分类导航*/
+.categroy{
+	margin-bottom: 10px;
+}
+.categroy li{
+	display: flex;
+	justify-content: space-around;
+	padding: 5px 0;
+}
+.categroy li a{
+	display: flex;
+	flex-direction: column;
+}
+.categroy li a img{
+	width: 40px;
+}
+
+/*精选品牌*/
+.top10{
+	display: flex;
+	margin-bottom: 10px;
+}
+.top10 .top10txtbox{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	white-space: nowrap;
+}
+.top10 .top10txtbox h4{
+	color: #222;
+	margin-bottom: 10px;
+}
+.top10 .top10txtbox p{
+	color: #888;
+	margin: 5px 0;
+}
+.top10 .top10txtbox .timecount{
+	color: #ee4339;
+	font-size: 18px;
+	font-weight: bold;
+}
+.top10 .top10imgbox{
+	flex: 1 1 auto;
+}
+.top10 .top10imgbox img{
+	height: 100px;
+}
+
+/*猜你喜欢*/
+.guessfav .section-title{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.guessfav .section-title a span{
+	margin-right: 10px;
+}
+.guessfav li{
+	margin-bottom: 5px;
+}
+.guessfav li:last-child{
+	margin-bottom: 0;
+}
+.guessfav li a{
+	display: flex;
+}
+.guessfav .imgbox{
+	margin-right: 20px;
+	flex: 0 0 120px;
+}
+.guessfav .txtbox{
+	flex: 1 1 auto;
+
+}
+.guessfav .txtbox h5{
+	margin: 0;
+	color: #222;
+	font-size: 16px
+}
+.guessfav .txtbox .desc{
+	color: #888;
+}
+.guessfav .txtbox .price{
+	display: flex;
+}
+.guessfav .txtbox .price span:last-child{
+	margin-right: 10px;
+}
+.guessfav .txtbox .newprice{
+	color: #ff4683;
+	font-size: 16px;
+	margin-right: 5px;
+}
+.guessfav .txtbox .privilega{
+	border: 1px solid #ff4683;
+	border-radius: 3px;
+	color: #ff4683;
+	margin-left: 5px;
+	margin-right: auto;
+}
+
+/*尾部*/
+footer{
+	display: flex;
+	flex-direction: column;
+	padding: 15px 10px 0px 15px;
+	color: #636363;
+	height: 150px;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+footer .navinfo{
+	display: flex;
+	justify-content: space-between;
+}
+footer .navinfo .city a{
+	display: inline-block;
+	border: 1px solid #ccc;
+	padding: 2px 5px;
+	margin-right: 5px;
+	border-radius: 3px;
+}
+footer .link{
+	display: flex;
+	justify-content: space-between;
+}
+footer .copyright,.record{
+	text-align: center;
+}

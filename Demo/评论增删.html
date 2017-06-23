@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#tablebox{
+			text-align: center;
+		}
+		#table1{
+			text-align: center;
+			width: 500px;
+			border: 1px solid red;
+		}
+		#formbox{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div id="tablebox">
+	<table id="mytable">
+		<tr>
+			<td width="20%">评论人</td>
+			<td width="80%">评论内容</td>
+		</tr>
+	</table>
+</div>
+	<hr>
+
+	<div id="formbox">
+		<form name="form1" action="">
+			评论人:<input type="text" id="person"><br>
+			评论内容:<textarea name="content" id="content" cols="60" rows="6">
+			</textarea>
+			<br>
+			<input type="button" value="发表" name="send" onclick="addElement()">
+			<input type="reset" value="重置" name="Reset">
+			<input type="button" value="删除第一条" name="delfirst" onclick="deleteFirst()">
+			<input type="button" value="删除最后一条" name="dellast" onclick="deleteLast()">
+			<br>
+			<input type="text" id="txt">
+			<input type="button" value="删除" name="delete" onclick="">
+		</form>
+	</div>
+
+
+	<script>
+		function addElement(){
+			var person = document.createTextNode(form1.person.value);
+			var content = document.createTextNode(form1.content.value);
+			var td_person = document.createElement("td");
+			var td_content = document.createElement("td");
+			var tr = document.createElement("tr");
+			var tbody = document.createElement("tbody");
+			var mytable = document.getElementById("mytable");
+
+			td_person.appendChild(person);
+			td_content.appendChild(content);
+
+			tr.appendChild(td_person);
+			tr.appendChild(td_content);
+
+			tbody.appendChild(tr);
+			mytable.appendChild(tbody);
+
+			form1.person.value="";
+			form1.content.value="";
+		}
+		
+
+		function deleteFirst(){
+			var mytable = document.getElementById("mytable");
+			if(mytable.rows.length>1){
+				mytable.deleteRow(1);
+			}
+		}
+
+		function deleteLast(){
+			var mytable = document.getElementById("mytable");
+			if(mytable.rows.length>1){
+				mytable.deleteRow(mytable.rows.length-1);
+			}
+		}
+
+		function deleteAny(){
+			var txt = querySelector("#txt value");
+			
+		}
+	</script>
+</body>
+</html>

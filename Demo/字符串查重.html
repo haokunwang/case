@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		var str = 'aaabbbbbccdeff';
+		function fun(str){
+			
+		}
+		//fun(str)
+
+		var str1 ="antzone";
+		var obj = str.split("").reduce(function(x,y){
+  			return (x[y]++ || (x[y] = 1),x);
+		},{});
+		console.log(obj);
+
+	</script>
+	<script>
+		var str="efsfesgsegs";
+		var strs = str.replace(/(.)(?=.*\1)/g,"");
+		//console.log(strs);
+		var obj = strs.split('');
+		//console.log(obj);
+		obj.map(function(val,index){
+			var regex = new RegExp(val, 'g');
+			//console.log(regex);
+			var result = str.match(regex);
+			//console.log(result);
+			var count = result.length;
+			//console.log(count);
+			console.log(val+ " 的数量为：" + count);
+		})
+
+		function fun(){
+			var str = 'aaabbbbbcdeff';
+			var newObj = {};
+			for(var i = 0;i<str.length;i++){
+				if(newObj[str[i]] === undefined){
+					newObj[str[i]] = 1;
+				}else{
+					newObj[str[i]]++;
+				} 
+			}
+			return console.log(newObj);
+		}
+		fun()
+	</script>
+</body>
+</html>

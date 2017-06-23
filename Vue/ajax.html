@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<button v-on:click='getdata'>{{message}}</button>
+	</div>
+	<script src='vue.js'></script>
+	<script src="vue-resource.min.js"></script>
+	<script>
+		new Vue({
+			el:'#app',
+			data:{
+				message:''
+			},
+			mounted:function(){
+				this.getbtn()
+			},
+			methods:{
+				getbtn:function(){
+					this.$http.get('/data/btntext.txt').then(function(res){
+						this.message = res.data
+					},function(res){
+						console.log(res)
+					})
+				},
+				getdata:function(){
+					this.$http.get('/data/text.txt').then(function(res){
+						console.log(res.data)
+					},function(res){
+						console.log(res)
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

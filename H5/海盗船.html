@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ 	<style>
+ 		*{
+ 			margin: 0;
+ 			padding: 0;
+ 		}
+ 		body{
+ 			background-color: #666;
+ 		}
+ 		@keyframes ship{
+ 			0%{transform: rotate(0deg);
+
+ 			}
+ 			50%{
+ 				transform: rotate(10deg);
+ 			}
+ 			100%{
+ 				transform: rotate(0deg);
+ 			}
+ 		}
+ 		@keyframes wave{
+ 			0%{
+ 				transform: translate(0px);
+ 			}
+ 			50%{
+ 				transform: translate(-100px);
+ 			}
+ 			100%{
+ 				transform: translate(0px);
+ 			}
+ 		}
+ 		.pic-box{
+ 			width: 1000px;
+ 			height: 700px;
+ 			margin: 20px auto;
+ 			overflow: hidden;
+ 			position: relative;
+ 			background-image:url(images/bg.png);
+ 			background-color: #fff;
+ 			background-repeat: no-repeat;
+ 		}
+ 		.wave1{
+ 			position: absolute;
+ 			bottom: 0px;
+ 			left: 0;
+ 			z-index: 999;
+ 			animation: wave 5s infinite;
+ 		}
+ 		.wave2{
+ 			position: absolute;
+ 			bottom: 30px;
+ 			left: 0;
+ 			z-index: 99;
+ 			animation: wave 8s infinite;
+ 		}
+ 		.wave3{
+ 			position: absolute;
+ 			bottom: 60px;
+ 			left: 0;
+ 			z-index: 9;
+ 			animation: wave 10s infinite;
+ 		}
+ 		.ship{
+ 			position: absolute;
+ 			top: 20px;
+ 			left: 100px;
+ 			animation: ship 10s infinite;
+ 		}
+ 	</style>
+ </head>
+ <body>
+ 	<div class="pic-box">
+ 		<img class="ship" src="images/ship.png" alt="">
+ 		<img class="wave1" src="images/wave1.png" alt="">
+ 		<img class="wave2" src="images/wave2.png" alt="">
+ 		<img class="wave3" src="images/wave3.png" alt="">
+ 	</div>
+ </body>
+ </html>

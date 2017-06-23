@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#pic{
+			display: block;
+		}
+		#list li{
+			width: 50px;
+			height: 30px;
+			list-style: none;
+			float: left;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<img src="../1.jpg" alt="" id="pic">
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		var apic = ["../1.jpg",
+					"../2.jpg",
+					"../3.jpg",
+					"../4.jpg",
+					"../5.jpg",]
+		function getIndex(obj){
+			var parent = obj.parentNode;
+			var siblings = parent.children;
+			for(var i = 0;i < siblings.length;i++){
+				if(siblings[i] === obj){
+					return i;
+				}
+			}
+		}
+		var ali = document.getElementById("list").children;
+		var img = document.getElementById("pic");
+		for(var i = 0;i < ali.length;i++){
+			ali[i].onclick = function(){
+				var index = getIndex(this);
+				img.src = apic[index];
+			}
+		}
+	</script>
+</body>
+</html>

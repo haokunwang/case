@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	邮箱确认：
+	原生<input class="val" type="text">
+	<span class="txt"></span>
+	<br>
+	<br>
+	jquery<input class="val1" type="text">
+	<span class="txt1"></span>
+	<br>
+	<br>
+	去前后空格：
+	原生<input class="val2" type="text">
+	<button class="btn1">去空格</button>
+	<br>
+	<br>
+	jquery<input class="val3" type="text">
+	<button class="btn2">去空格</button>
+	
+	<script src='../jquery.js'></script>
+
+	<script>
+		
+		document.querySelector(".val").onblur = function(){
+			var val = document.querySelector(".val").value;
+			var zc = /\w{1,9}\@qq\.com$/;
+			var str = zc.test(val)?"成功":'失败';
+			document.querySelector(".txt").innerHTML = str;
+		}
+
+		$('.val1').blur(function(){
+			var zc1 = /\w{1,9}\@qq\.com$/
+			var val = $('.val1').val();
+			var boolean1 = zc1.test(val);
+			console.log(boolean1)
+			if(boolean1==true){
+				$(".txt1").html("输入合法");
+			}else{
+				document.querySelector(".txt1").innerHTML = "输入不合法";
+			}
+		})
+
+
+		document.querySelector('.btn1').onclick = function(){
+			var str = document.querySelector('.val2').value;
+			var result = trim(str);
+			console.log("|" + result + "|");
+		}
+
+
+		$('.btn2').click(function(){
+			var str = $('.val3').val();
+			var result = str.trim();
+			console.log("|" + result + "|")
+		})
+		function trim(str){
+			var re = /^\s+|\s+$/g;
+			return str.replace(re,'')
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.a{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- 2. 写v-bind:val='' -->
+		<hello class='a' v-bind:val='furit'></hello>
+		<!-- 未写 v-bind -->
+		<hello class='a' val='furit'></hello>
+	</div>
+
+
+
+	<div id="app1">
+		<helle v-on:myshow='myfun'></helle>
+	</div>
+	<script src='vue.js'></script>
+
+	<script>
+	//由外部new Vne 向内部组件里传数据
+
+		Vue.component('hello',{
+
+			//1. 添加props
+			props:['val'],
+
+
+			template:'<div>\
+				<h1 v-on:click="show">{{message}}</h1>\
+				<h2 v-on:click="show">{{val}}</h2>\
+			</div>',
+			data:function(){
+				return{
+					message:'hello vue'
+				}
+			},
+			methods:{
+				show:function(){
+					console.log(this.message)
+				}
+			}
+		})
+		new Vue({
+			el:'#app',
+			data:{
+				message:"new vue",
+				furit:'水果'
+			}
+		})
+
+
+
+		//由内部组件里 向 外部new Vne 传数据
+		Vue.component('helle',{
+			template:"<h1 v-on:click='mycom'>{{text}}</h1>",
+			data:function(){
+				return{
+					text:'helle vue'
+				}
+			},
+			methods:{
+				mycom:function(){
+					this.$emit('myshow',this.text)
+				}
+			}
+		})
+		
+		new Vue({
+			el:'#app1',
+			methods:{
+				myfun:function(text){
+					alert(text)
+				}
+			}
+		})
+	</script>
+</body>
+</html>

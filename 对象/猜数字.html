@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var num = Math.ceil(Math.random() * 10);
+
+		function fun(){
+			var x = prompt('');
+			if(x == num){
+				alert('正确');
+
+			}else if(x > num){
+				alert('大于');
+				fun();
+			}else if(x < num){
+				alert('小于');
+				fun();
+			}
+		}
+		fun();
+		
+		// var target = Math.floor(Math.random()*10+1);
+		// var bool = true;
+		// alert('猜数字');
+		// while(bool){
+		// 	var number = Number(prompt("请输入数字"));
+		// 	if(number > target){
+		// 		alert('大于结果');
+		// 		// guess();
+		// 	}else if(number < target){
+		// 		alert('小于结果');
+		// 		// guess();
+		// 	}else if(number === target){
+		// 		alert('回答正确');
+		// 		bool = false;
+		// 	}
+		// }
+		
+	</script>
+</body>
+</html>

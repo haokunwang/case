@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<select name="" id="selProvince">
+		<option value="">---请选择---</option>
+	</select>
+	<select name="" id="selCity">
+		<option value="">---请选择---</option>
+	</select>
+	<select name="" id="selCountry">
+		<option value="">---请选择---</option>
+	</select>
+	<script src="jquery.js"></script>
+	<script>
+		var aProvince = ["河北省","陕西省","湖北省"];
+		//二维数组地市级
+		var aCity = [["石家庄市","邯郸市","秦皇岛市"],["西安市","安康","不知道"],["长","沙","市"]];
+		//三位数组 县级
+		var aCountry = [
+			[
+				["石","家","庄市"],
+				["邯","郸","市"],
+				["秦","岛","皇市"]
+			],
+			[
+				["西","安","市"],
+				["安","康","市"],
+				["不","知","道"]
+			],
+			[
+				["长","长","长"],
+				["沙","沙","沙"],
+				["市","市","市"]
+			],
+		]
+		$(function(){
+
+
+			for(let i = 0;i <aProvince.length;i++){
+				$("#selProvince").append('<option value="'+aProvince[i]+'">'+aProvince[i]+'</option>')
+			}
+
+			var proIndex = null;
+
+			$("#selProvince").change(function(){
+				//清除下拉菜单的 叠加问题
+				$("#selCity").children().not(":eq(0)").remove();
+				$("#selCountry").children().not(":eq(0)").remove();
+				//获取 省 的 数组 索引
+				proIndex = $(this).children("option:selected").index();
+				//防止 proIndex 为 0 导致 aaCity 报错问题
+				if(proIndex == 0){return};
+				var aaCity = aCity[proIndex-1];
+				//循环 aaCity 数组插入 地级市 列表
+				for(let i = 0;i <aaCity.length;i++){
+					$("#selCity").append('<option value="'+aaCity[i]+'">'+aaCity[i]+'</option>')
+				}
+			})
+
+			$("#selCity").change(function(){
+				//清除下拉菜单的 叠加问题
+				$("#selCountry").children().not(":eq(0)").remove();
+				//获取 地级市 的 数组 索引
+				var cityIndex = $(this).children("option:selected").index();
+				//防止 proIndex 为 0 导致 aaCity 报错问题
+				if(cityIndex == 0){return};
+				var aacountry = aCountry[proIndex-1][cityIndex-1];
+				//循环 aaCity 数组插入 县级 列表
+				for(let i = 0;i <aacountry.length;i++){
+					$("#selCountry").append('<option value="'+aacountry[i]+'">'+aacountry[i]+'</option>')
+				}
+			})
+		})
+	</script>
+</body>
+</html>

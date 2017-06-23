@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.left{
+			width: 400px;
+			height: 400px;
+			border: 2px solid blue;
+			margin: 15px;
+			background: url(../1.jpg) no-repeat;
+			background-size:400px 400px;
+			float: left;
+			position: relative;
+		}
+		.box{
+			width: 200px;
+			height: 200px;
+			background: greenyellow;
+			opacity: 0.8;
+			filter: alpah(opacity:0.6);
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		.right{
+			width: 400px;
+			height: 400px;
+			border: 2px solid black;
+			float: left;
+			margin: 15px;
+			overflow: hidden;
+			position: relative;
+			display: none;
+		}
+		.rpic{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.cover{
+			width: 400px;
+			height: 400px;
+			background: #f00;
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+			filter: alpah(opacity:0);
+		}
+	</style>
+</head>
+<body>
+	<div class="left">
+		<div class="box"></div>
+		<div class="cover"></div>
+	</div>
+	<div class="right">
+		<img src="../1.jpg" alt="" class="rpic">
+	</div>
+	<script src="index.js"></script>
+
+	<script>
+		var left = document.getElementsByClassName('left').item(0);
+		var box = document.getElementsByClassName('box').item(0);
+		var right = document.getElementsByClassName('right').item(0);
+		var rpic = document.getElementsByClassName('rpic').item(0);
+		var cover = document.getElementsByClassName('cover').item(0);
+		
+		cover.onmousemove = function(e){
+			var ev = window.event || e;
+			var mouse_left = ev.offsetX || ev.layerX;
+			var mouse_top = ev.offsetY || ev.layerY;
+			document.title = mouse_left + "|" + mouse_top;
+			//计算色块的位置
+			var box_left = mouse_left - 100;
+			var box_top = mouse_top - 100;
+			//判断
+			if(box_left < 0){
+				box_left = 0;
+			}
+			if(box_left > 200){
+				box_left = 200;
+			}
+			if(box_top < 0){
+				box_top = 0
+			}
+			if(box_top > 200){
+				box_top = 200
+			}
+			//让色块移动
+			box.style.left = box_left + 'px';
+			box.style.top = box_top + 'px';
+			//计算右侧图片的位置
+			var rpic_left = box_left * -1.255;
+			var rpic_top = box_top * -0.11;
+			//让右侧图片移动
+			rpic.style.left = rpic_left + 'px';
+			rpic.style.top = rpic_top + 'px';
+		}
+		cover.onmouseover = function(){
+			box.style.display = "block";
+			right.style.display = "block";
+		}
+		cover.onmouseout = function(){
+			box.style.display = "none";
+			right.style.display = "none";
+		}
+	</script>
+</body>
+</html>

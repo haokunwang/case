@@ -1,0 +1,140 @@
+html,body{
+	width: 100%;
+	min-width: 1280px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Airal,"Microsoft Yahei";
+	font-size: 14px;
+}
+a{
+	text-decoration: none;
+}
+ul,li{
+	list-style: none;
+}
+.container{
+	width: 100%;
+}
+.container > .content{
+	width: 1200px;
+	margin: auto;
+}
+.header{
+	background-color: #3f515f;
+	padding-top: 50px;
+}
+.header > .top{
+	/*高度不见了，可设置overflow*/
+	overflow: hidden;
+}
+.header > .top > img{
+	width: auto;
+	height: 40px;
+	float: left;
+	margin-left: 20px;
+}
+nav{
+	float: right;
+}
+nav > ul > li{
+	float: left;
+	margin-right: 40px;
+}
+nav > ul > li > a{
+	margin-top: -20px;
+	color: #fff;
+	font-size: 12px;
+}
+nav > ul > li > a:hover{
+	text-decoration: underline;
+}
+.header .banner{
+	height: 660px;
+}
+.header .banner ul{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.header .banner ul li{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.header .banner ul li{
+	display: none;
+}
+.header .banner ul li.active{
+	display: block;
+}
+.header .banner ul li.banner_1{
+	background-image: url(images/1.jpg);
+	background-repeat: no-repeat;
+	background-position: -350px -50px;
+}
+.header .banner ul li.banner_1 .font_text{
+	position: absolute;
+	top: 150px;
+	right: 50px;
+}
+.header .banner ul li.banner_1 .font_text img{
+	display: block;
+	float: right;
+	clear: both;
+
+	/**/
+	position: relative;
+	top: -300px;
+}
+.header .banner ul li.banner_2{
+	background-image: url(images/3.jpg);
+	background-repeat: no-repeat;
+	background-position: -350px -50px;
+}
+.header .banner ul li.banner_2 .font_text{
+	position: absolute;
+	top: 220px;
+	right: 50px;
+}
+.header .banner ul li.banner_2 .font_text img{
+	display: block;
+	float: right;
+	clear: both;
+	margin-bottom: 35px;
+
+	/**/
+	position: relative;
+	top: -300px;
+}
+.header .banner dl{
+	width: 60px;
+	height: 20px;
+	margin-left: -50px;
+	position: absolute;
+	bottom: -10px;
+	left: 50%;
+	display: inline-flex;
+	justify-content: space-around;
+}
+.header .banner dl dd{
+	margin-left: 0;
+}
+.header .banner dl dd a{
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	background-color: none;
+}
+.header .banner dl dd.active a{
+	background-color: #fff;
+}
+
+/*测试*/
+.dynamic{
+	opacity: 0;
+}

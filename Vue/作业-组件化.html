@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<txt v-on:myadd='myfun'></txt>
+		<ul>
+			<list v-bind:val='fruit' v-for='(fruit,index) in furitList' v-on:mydel='mydelfun(index)'></list>
+		</ul>
+<span></span>
+	</div>
+	<script src='vue.js'></script>
+	<script>
+		Vue.component('txt',{
+			template:'<div>\
+						<input v-model="message" type="text">\
+						<button v-on:click="add">添加</button>\
+					</div>',
+			data:function(){
+				return{
+					message:''
+				}
+			},
+			methods:{
+				add:function(){
+					this.$emit('myadd',this.message)
+				}
+			}
+		})
+		Vue.component('list',{
+			props:['val'],
+			template:'<li>{{val}}\
+						<button v-on:click="del">删除</button>\
+					</li>',
+			methods:{
+				del:function(){
+					this.$emit('mydel')
+				}
+			}
+		})
+
+
+		new Vue({
+			el:'#app',
+			data:{
+				furitList:['苹果','香蕉','鸭梨']
+			},
+			methods:{
+				myfun:function(message){
+					this.furitList.push(message)
+				},
+				mydelfun:function(index){
+					this.furitList.splice(index,1)
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+*{
+	cursor: crosshair;
+}
+html,body{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	user-select: none;
+	/*设定增量*/
+	counter-reset: birds;
+}
+input{
+	position: fixed;
+	left: 0;
+	top: 0;
+	margin-left: -50px;
+}
+.wrapper{
+	position: relative;
+	height: 500px;
+	background: -webkit-linear-gradient(top,#ded48d,#fff);
+}
+.iput_anima ~ .bird{
+	animation: birdmove 8s linear infinite;
+	transition: .3s cubic-bezier(0,.45,1,0);
+}
+.bird{
+	width: 15px;
+	height: 15px;
+	background: #000;
+	position: absolute;
+/*	top: 50%;
+	left: 50%;*/
+	border-radius: 50% 50% 20% 20%;
+	/*animation: planeo 1s linear infinite;*/
+}
+.bird1{
+	left: 100px;
+	top: 300px;
+	transform: scale(.9);
+	/*动画延迟*/
+	animation-delay: -12.9s !important;
+}
+.bird2{
+	top: 100px;
+	transform: scale(.5);
+	animation-delay: -5s !important;
+}
+.bird3{
+	top: 200px;
+	transform: scale(.8);
+	animation-delay: -13.3s !important;
+}
+.bird4{
+	top: 250px;
+	transform: scale(1.4);
+	animation-delay: -9.9s !important;
+}
+.bird5{
+	top: 150px;
+	transform: scale(2);
+	animation-delay: -15.8s !important;
+}
+.bird6{
+	top: 90px;
+	transform: scale(1.2);
+	animation-delay: -5.8s !important;
+}
+.bird7{
+	top: 400px;
+	transform: scale(1);
+	animation-delay: -15s !important;
+}
+.bird8{
+	top: 30px;
+	transform: scale(.8);
+	animation-delay: -14.4s !important;
+}
+.bird9{
+	top: 110px;
+	transform: scale(.6);
+	animation-delay: -5.4s !important;
+}
+.bird:before,
+.bird:after{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	content: "";
+}
+.bird:before{
+	width: 6px;
+	height: 6px;
+	background: #ef8957;
+	border-radius: 100% 0 20% 0;
+	transform: rotate(45deg);
+	margin-left: -3px;
+	margin-top: -2px;
+}
+.bird:after{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	box-shadow: inset 0 5px 0 #000;
+	margin-top: -7px;
+	margin-left: -50px;
+	animation: alas 5s linear infinite;
+	/*重定义基点*/
+	transform-origin: 100% 0;
+}
+/***************定义翅膀动画***************/
+@keyframes alas{
+	50%{
+		transform: rotateX(-1440deg);
+	}
+}
+/***************定义鸟在停留时起伏动画***************/
+@keyframes planeo{
+	40%{
+		transform: rotateZ(-2deg) translateX(2px) translateY(15px) translateZ(0);
+	}
+	80%{
+		transform: rotateZ(2deg) translateX(5px) translateY(10px) translateZ(0);
+	}
+}
+/***************定义鸟在移动动画***************/
+@keyframes birdmove{
+	0%{
+		left: 0;
+	}
+	20%{
+		top: 50%;
+		left: 20%;
+	}
+	40%{
+		top: 30%;
+		left: 60%;
+	}
+	60%{
+		top: 80%;
+		left: 80%;
+	}
+	80%{
+		top: 10%;
+		left: 20%;
+	}
+	100%{
+		top: 30%;
+		left: 20%;
+	}
+}
+/***************射中后消失***************/
+.iput_anima ~ .bird{
+	opacity: 0;
+	animation: birdmove 8s linear infinite;
+	transition: .3s cubic-bezier(0,.45,1,0);
+}
+.iput_anima1:not(:checked) ~ .bird1,
+.iput_anima2:not(:checked) ~ .bird2,
+.iput_anima3:not(:checked) ~ .bird3,
+.iput_anima4:not(:checked) ~ .bird4,
+.iput_anima5:not(:checked) ~ .bird5,
+.iput_anima6:not(:checked) ~ .bird6,
+.iput_anima7:not(:checked) ~ .bird7,
+.iput_anima8:not(:checked) ~ .bird8,
+.iput_anima9:not(:checked) ~ .bird9{
+	opacity: 1;
+}
+/***************射中后消失说话***************/
+.bird span{
+	display: none;
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 60px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid #f00;
+	background: #fff;
+	padding: 2px;
+}
+.bird span:before{
+	content: "sfsdsad";
+	font-size: 12px;
+	color: #f00;
+}
+.iput_anima1:checked ~ .bird1 span,
+.iput_anima2:checked ~ .bird2 span,
+.iput_anima3:checked ~ .bird3 span,
+.iput_anima4:checked ~ .bird4 span,
+.iput_anima5:checked ~ .bird5 span,
+.iput_anima6:checked ~ .bird6 span,
+.iput_anima7:checked ~ .bird7 span,
+.iput_anima8:checked ~ .bird8 span,
+.iput_anima9:checked ~ .bird9 span{
+	display: block;
+}
+/***************计分***************/
+.sum{
+	margin: 0 auto;
+}
+.sum:after{
+	content: counter(birds);
+}
+.iput_anima:checked{
+	counter-increment: birds;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;	
+		}
+		li{
+			list-style: none;
+		}
+		.box{
+			position: relative;
+			width: 502px;
+		}
+		.picList{
+			width: 500px;
+			height: 300px;
+			overflow: hidden;
+		}
+		.picList ul{
+			width: 3000px;
+		}
+		.picList li{
+			float: left;
+		}
+		.picList img{
+			width: 500px;
+			height: 300px;
+		}
+		.numList{
+			width: 500px;
+		}
+		.numList li{
+			float: left;
+			width: 30px;
+			height: 20px;
+			cursor: pointer;
+			border: 1px solid red;
+			text-align: center;
+			line-height: 20px;
+		}
+		.rond{
+			position: absolute;
+			top: 280px;
+			left: 200px;
+		}
+		.rond li{
+			width: 8px;
+			height: 8px;
+			margin-left: 3px;
+			float: left;
+			display: inline-block;
+			background-color: white;
+			border-radius: 50%;
+		}
+		.active{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="picList">
+			<ul>
+				<li><img src="../1.jpg" alt=""></li>
+				<li><img src="../2.jpg" alt=""></li>
+				<li><img src="../3.jpg" alt=""></li>
+				<li><img src="../4.jpg" alt=""></li>
+				<li><img src="../5.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="rond">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<div class="numList">
+		<button class="pre">上一张</button>
+		<button class="next">下一张</button>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script src = '../jquery.js'></script>
+	<script>
+		var i = 0;
+
+		//var open = $('.rond ul').children();
+
+		var clone = $('.picList ul li').first().clone();
+		$('.picList ul').append(clone);
+		var size = $('.picList ul li').length;
+
+		$('.rond li').eq(0).css({'background-color':'red'});
+
+		function fun(){
+			i++;
+			if(i == size){
+				$('.picList ul').css({'margin-left':0});
+				i = 1;
+			}
+			$('.picList ul').animate({'margin-left': i * -500},500);
+
+			dian(i);
+		}
+		var t = setInterval(fun,1000);
+
+
+
+		$('.numList').mouseenter(function(){
+			clearInterval(t);
+		}).mouseleave(function(){
+			t = setInterval(fun,1000);
+		})
+
+		$('.box').mouseenter(function(){
+			clearInterval(t);
+		}).mouseleave(function(){
+			t = setInterval(fun,1000);
+		})
+
+
+		$('.pre').click(function(){
+			i--;
+			if(i == -1){
+				$('.picList ul').css({'margin-left':(size-1) * -500});
+				i = size-2;
+			}
+			$('.picList ul').animate({'margin-left':i * -500});
+			dian(i);
+		})
+		$('.next').click(function(){
+			i++;
+			if(i == size){
+				$('.picList ul').css({'margin-left':0});
+				i = 1;
+			}
+			$('.picList ul').animate({'margin-left':i * -500},500);
+			dian(i);
+		})
+
+		$('.numList ul li').click(function(){
+			var ind = $(this).index();
+			i = ind;
+			$('.rond li').eq(ind).css({'background-color':'red'});
+			$('.rond li').eq(ind).siblings().css({'background-color':'white'});
+			$('.picList ul').animate({'margin-left':i * -500},500);
+		})
+
+		$('.rond ul li').mouseenter(function(){
+			clearInterval(t);
+			var ind = $(this).index();
+			i = ind;
+			$('.rond li').eq(ind).css({'background-color':'red'});
+			$('.rond li').eq(ind).siblings().css({'background-color':'white'});
+			$('.picList ul').animate({'margin-left':i * -500},500);
+		})
+
+		function dian(i){
+			if(i == size-1){
+				$('.rond li').eq(0).css({'background-color':'red'});
+				$('.rond li').eq(0).siblings().css({'background-color':'white'})
+			}else{
+				$('.rond li').eq(i).css({'background-color':'red'});
+				$('.rond li').eq(i).siblings().css({'background-color':'white'});
+			}
+
+		}
+			
+	</script>
+</body>
+</html>

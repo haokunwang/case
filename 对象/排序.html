@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var numArray = [5,6,,3,1,4,9,7]
+		var studentList = [
+				{age:4},
+				{age:1},
+				{age:5},
+				{age:3},
+				{age:2},
+		]
+		var result1 = numArray.sort(function(a,b){
+			return b-a;
+		})
+		var result2 = studentList.sort(comp("age"));
+		function comp(prop){
+			return function(a,b){
+				return a[prop]-b[prop];
+			}
+		}
+		console.log(result1);
+		console.log(result2);
+	</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header class="header container">
+		<div class="content top">
+			<img src="images/LOGO.png" alt="">
+			<nav>
+				<ul>
+					<li><a href="#">首页</a></li>
+					<li><a href="#">服务</a></li>
+					<li><a href="#">观点</a></li>
+					<li><a href="#">基地</a></li>
+					<li><a href="#">我们</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="content banner">
+			<ul>
+				<li class="banner_1 active">
+					<div class="font_text">
+						<img class="sub_1" src="images/sub_1_1.png" alt="">
+						<img class="sub_2" src="images/sub_1_2.png" alt="">
+						<img class="sub_3" src="images/sub_1_3.png" alt="">
+					</div>
+				</li>
+				<li class="banner_2">
+					<div class="font_text">
+						<img class="sub_1" src="images/sub_2_1.png" alt="">
+						<img class="sub_2" src="images/sub_2_2.jpg" alt="">
+						<img class="sub_3" src="images/sub_2_3.png" alt="">
+					</div>
+				</li>
+			</ul>
+			<dl>
+				<dd class="active"><a href="#"></a></dd>
+				<dd class=""><a href="#"></a></dd>
+			</dl>
+		</div>
+	</header>
+
+<!-- 测试 -->
+	<div class="container">
+		<div class="content dynamic">
+			<br><br>
+			<br><br>
+			<img src="images/ser/ser3.png" alt="">
+			<br><br>
+			<br><br>
+		</div>
+		<div class="content dynamic">
+			<br><br>
+			<br><br>
+			<img src="images/ser/ser3.png" alt="">
+			<br><br>
+			<br><br>
+		</div>
+		<div class="content dynamic">
+			<br><br>
+			<br><br>
+			<img src="images/ser/ser3.png" alt="">
+			<br><br>
+			<br><br>
+		</div>
+	</div>
+
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script>
+		$(function(){
+			var $banner_page = $(".header .banner ul li");
+			var $banner_btn = $(".header .banner dl dd a");
+			$banner_btn.click(function(){
+				var $target = $(this).parent()
+				var index = $target.index();
+				$target.addClass("active").siblings().removeClass("active");
+				
+				var $page = $banner_page.eq(index);
+				$page.fadeIn(1500,function(){
+					$(this).addClass("active");
+				}).siblings().fadeOut(1500,function(){
+					$(this).removeClass("active");
+				});
+				var $imgs = $page.find(".font_text").find("img");
+				$imgs.eq(0).animate({top:0},1200);
+				$imgs.eq(1).animate({top:0},1000);
+				$imgs.eq(2).animate({top:0},800);
+				return false
+			}).first().trigger("click");
+
+			$(window).scroll(function(){
+				var top = $(this).scrollTop();
+				console.log(top);
+				var $seenHeight = $(document.body)[0].clientHeight/2;
+				$(".dynamic").each(function(){
+					if(top >($(this).offset().top - $seenHeight)){
+						$(this).animate({opacity: 1},1000).removeClass("dynamic")
+					}
+				})
+			})
+			
+		})
+	</script>
+</body>
+</html>

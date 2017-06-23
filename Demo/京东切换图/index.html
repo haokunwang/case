@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="initialize.css">
+	<style>
+		.out{
+			width: 790px;
+			height: 340px;
+			margin: 100px auto;
+			position: relative;
+		}
+		.out .in{
+			width: 790px;
+			height: 340px;
+		}
+		.out .in img{
+			width: 790px;
+			height: 340px;
+			position: absolute;
+			opacity: 0;
+			transition: all 0.8s;
+			z-index: 0;
+		}
+		ul {
+			bottom: 15px;
+			margin: 0 auto;
+			background-color:rgba(255,255,255,.3);
+			border-radius: 10px;
+			position: absolute;
+			left: 40px;
+			z-index: 9999;
+		}
+		ul li {
+			height: 20px;
+			width: 20px;
+			background-color: #B7B7B7;
+			float: left;
+			border-radius: 50%;
+			margin: 2px;
+		}
+		.jt {
+			height: 36px;
+			width: 24px;
+			line-height: 36px;
+			text-align: center;
+			background-color: rgba(0,0,0,.3);
+			font-size: 14px;
+			color: #fff;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin: auto 0;
+			display: none;
+			z-index: 99;
+			cursor: pointer;
+		}
+		.left {
+			left: 0;
+		}
+		.right {
+			right: 0;
+		}
+		.out:hover .jt {
+			display: block;
+		}
+		.active {
+			background-color:#F40;
+		}
+	</style>
+</head>
+<body>
+	<div class="out">
+		<div class="in">
+			<img src="pic/j1.jpg" alt="" style="opacity: 1;z-index: 1;">
+			<img src="pic/j2.jpg" alt="">
+			<img src="pic/j3.jpg" alt="">
+			<img src="pic/j4.jpg" alt="">
+			<img src="pic/j5.jpg" alt="">
+			<img src="pic/j6.jpg" alt="">
+			<img src="pic/j7.jpg" alt="">
+			<img src="pic/j8.jpg" alt="">
+		</div>
+		<ul class="clearFix">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="left jt"><</div>
+		<div class="right jt">></div>
+	</div>
+
+	<script>
+		var out = document.getElementsByClassName("out").item(0);
+		var left = document.getElementsByClassName("left").item(0);
+		var right = document.getElementsByClassName("right").item(0);
+		var imgs = document.getElementsByTagName("img");
+		var oli = document.getElementsByTagName("li");
+		var index = 0;
+
+		left.onclick = function(){
+			imgs[index].style.opacity = 0;
+			imgs[index].style.zIndex = 0;
+			oli[index].className = "";
+			if(index == 0){
+				index = 7;
+			}else{
+				index--;
+			}
+			imgs[index].style.opacity = 1;
+			imgs[index].style.zIndex = 1;
+			oli[index].className = "active";
+		}
+		right.onclick = function(){
+			imgs[index].style.opacity = 0;
+			imgs[index].style.zIndex = 0;
+			oli[index].className = "";
+			if(index == 7){
+				index = 0;
+			}else{
+				index++;
+			}
+			imgs[index].style.opacity = 1;
+			imgs[index].style.zIndex = 1;
+			oli[index].className = "active";
+		}
+
+		for(let i = 0;i < oli.length;i++){
+			oli[i].onmouseover = function(){
+				timer = setTimeout(function(){
+					imgs[index].style.opacity = 0;
+					imgs[index].style.zIndex = 0;
+					oli[index].className = "";
+					index = i;
+					imgs[index].style.opacity = 1;
+					imgs[index].style.zIndex = 1;
+					oli[index].className = "active";
+				},300)
+			}
+			oli[i].onmouseout = function(){
+				clearTimeout(timer);
+			}
+		}
+
+		var timer1 = setInterval(right.onclick,1500);
+		out.onmouseout = function(){
+			timer1 = setInterval(right.onclick,1500);
+		}
+		out.onmouseover = function(){
+			clearInterval(timer1)
+		}
+
+	</script>
+</body>
+</html>

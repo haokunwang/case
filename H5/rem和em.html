@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html{
+			font-size: 10px;
+		}
+		.box{
+			width: 500px;
+			height: 500px;
+			border: 1px solid red;
+			font-size: 20px;
+		}
+		.box-px{
+			width: 100px;
+			height: 100px;
+			background-color: #f00;
+		}
+		.box-em{
+			width: 10em;
+			height: 10em;
+			background-color: #0f0;
+		}
+		.box-rem{
+			width: 10rem;
+			height: 10rem;
+			background-color: #00f;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="box-px"></div>
+
+		<!-- 根据父级font-size的大小改变，没有则是html 的 font-size的大小改变 -->
+		<div class="box-em"></div>
+
+		<!-- 根据  html 的 font-size的大小改变 -->
+		<div class="box-rem"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = [1,4,15,98,41,21];
+		
+		function bubblesort(arr){
+			var len = arr.length;
+			for(var i = len;i>0;i--){
+				for(var j = 0;j<i-1;j++){
+					if(arr[j] > arr[j+1]){
+						[arr[j],arr[j+1]] = [arr[j+1],arr[j]]
+					}
+				}
+			}
+			return arr;
+		}
+
+		console.log(bubblesort(arr));
+
+	</script>
+</body>
+</html>

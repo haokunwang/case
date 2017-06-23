@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1></h1>
+	<div>
+		<span class="t-d"></span>
+		<span class="t-h"></span>
+		<span class="t-m"></span>
+		<span class="t-s"></span>
+	</div>
+	<script>
+		function getsTime(){
+			var ToDate = new Date('2017-2-25 17:00:00');
+			var dateNow = new Date();
+
+			//console.log(ToDate);
+			var time = ToDate.getTime() - dateNow.getTime();
+
+			var getdady = Math.floor(time/1000/60/60/24);
+			var gethours = Math.floor(time/1000/60/60%24);
+			var getmin = Math.floor(time/1000/60%60);
+			var gets = Math.floor(time/1000%60);
+			document.querySelector(".t-d").innerHTML = getdady + "天";
+			document.querySelector(".t-h").innerHTML = gethours + "时";
+			document.querySelector(".t-m").innerHTML = getmin + "分";
+			document.querySelector(".t-s").innerHTML = gets + "秒";
+		}
+		setInterval(getsTime,1000);
+
+
+
+
+		var target = new Date("2017-2-25 17:00:00");
+			function showTime(){
+			var timeNow = new Date().getTime();
+			var time = target.getTime() - timeNow;
+			//24 * 60 * 60 *1000
+
+			var day = Math.floor(time/(24*60*60*1000));
+			var dayTime = time%(24*60*60*1000);
+
+			var hours = Math.floor(dayTime/(60*60*1000));
+			var hourTime = dayTime%(60*60*1000);
+
+			var minutes = Math.floor(hourTime/(60*1000));
+			var minuteTime = hourTime%(60*1000);
+
+			var seconds = Math.floor(minuteTime/1000);
+
+			var str = day + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+			return str;
+		}
+		
+		setInterval(function(){
+			document.querySelector('h1').innerHTML = showTime();
+		},1000)
+	</script>
+</body>
+</html>

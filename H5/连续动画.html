@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		@keyframes changeColor{
+			0%{
+				background-color: #f00;
+				transform: rotate(0deg);
+			}
+			50%{
+				background-color: #ff0;
+				transform: rotate(360deg);
+			}
+			100%{
+				background-color: #f00;
+				transform: rotate(720deg);
+			}
+		}
+		.box{
+			background-color: #f00;
+			width: 100px;
+			height: 100px;
+		}
+		.box:hover{
+			animation: changeColor 3s linear 0.2s infinite;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		
+	</div>
+</body>
+</html>

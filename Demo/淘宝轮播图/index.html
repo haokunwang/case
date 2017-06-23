@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="initialize.css">
+	<style>
+		.out{
+			width: 520px;
+			height: 280px;
+			overflow: hidden;
+			margin: 0 auto;
+			margin-top: 100px;
+			position: relative;
+		}
+		.out:hover .jt{
+			display: block;
+		}
+		.out .in{
+			width: 3640px;
+			position: absolute;
+		}
+		.out .in img{
+			height: 280px;
+			width: 520px;
+			float: left;
+		}
+		.out ul{
+			position: absolute;
+			bottom: 15px;
+			width: 65px;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			background: rgba(255,255,255,0.3);
+			border-radius: 10px;
+		}
+		li{
+			list-style: none;
+			width: 9px;
+			height: 9px;
+			border-radius: 50%;
+			background-color: #b7b7b7;
+			margin: 2px;
+			float: left;
+			cursor: pointer;
+		}
+		.active{
+			background-color: #f40;
+		}
+		.out .jt{
+			width: 24px;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			background: rgba(0,0,0,0.3);
+			font-size: 14px;
+			color: #fff;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin: auto 0;
+			display: none;
+			cursor: pointer;
+		}
+		.out .left{
+			left: 0;
+		}
+		.out .right{
+			right: 0;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="out">
+		<div class="in clearFix" style="left: -520px;">
+			<img src="img/5.jpg" alt="">
+			<img src="img/1.jpg" alt="">
+			<img src="img/2.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+			<img src="img/4.jpg" alt="">
+			<img src="img/5.jpg" alt="">
+			<img src="img/1.jpg" alt="">
+		</div>
+		<ul class="clearFix">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="left jt"> < </div>
+		<div class="right jt"> > </div>
+	</div>
+	<script>
+		var out = document.getElementsByClassName("out").item(0);
+		var left = document.getElementsByClassName("left").item(0);
+		var right = document.getElementsByClassName("right").item(0);
+		var myin = document.getElementsByClassName("in").item(0);
+		var oli = document.getElementsByTagName("li");
+		var timer = null;
+		var zt = true;
+		var index = 0;
+
+		//绑定 左键 点击事件
+		left.onclick = function(){
+			//保证 执行完一次move 再执行 下一次move
+			if(zt){
+				move(520)
+				if(index == 0){
+					index = 4
+				}else{
+					index--
+				}
+				show();
+			}
+		}
+
+		//绑定 右键 点击事件
+		right.onclick = function(){
+			//保证 执行完一次move 再执行 下一次move
+			if(zt){
+				move(-520)
+				if(index == 4){
+					index = 0
+				}else{
+					index++
+				}
+				show();
+			}
+		}
+
+		//移动函数
+		function move(dis){
+			//防止 移动 过快 出现错位
+			zt = false;
+			//将要移动到的位置
+			var newplace = parseInt(myin.style.left)+dis;
+			var speed = 40;	//移动速度
+			var every = dis/speed;	//移动时间
+			function smove(){
+				//判断 移动 向左 还是 向右
+				if(every<0&&parseInt(myin.style.left)>newplace || every>0&&parseInt(myin.style.left)<newplace){
+					myin.style.left = parseInt(myin.style.left)+every+'px';
+					//延迟 递归函数 出现过度效果
+					setTimeout(smove,10);
+				}else{
+					myin.style.left = newplace+'px';
+					//当移动到最后一张，跳到第一张
+					if(newplace <= -3120){
+						myin.style.left = -520 + "px";
+					}
+					//当移动到第一张，跳到最后一张
+					if(newplace >= 0){
+						myin.style.left = -2600 + "px";
+					}
+					//防止 移动 过快 出现错位
+					zt = true;
+				}
+			}
+			smove();
+		}
+
+		//绑定 红点 点击事件
+		for(let i = 0;i < oli.length;i++){
+			oli[i].value = i;
+			oli[i].onclick = function(){
+				if(zt){
+					var dis = (this.value - index)*-520;
+					move(dis);
+					index = this.value;
+					show();
+				}
+			}
+		}
+
+		//红点移动效果
+		function show(){
+			for(let i = 0;i < oli.length;i++){
+				if(oli[i].className == "active"){
+					oli[i].className = "";
+					//减少 遍历
+					break;
+				}
+			}
+			oli[index].className = "active";
+		}
+
+		//自动轮播
+		timer = setInterval(right.onclick,1000);
+		out.onmouseover = function(){
+			clearInterval(timer)
+		}
+		out.onmouseout = function(){
+			timer = setInterval(right.onclick,1000);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Ani(){}
+		Ani.prototype.arr1 = new Array('a','s');
+		var ani1 = new Ani();
+		var ani2 = new Ani();
+		ani1.arr1.push('d');
+		console.log(ani1.arr1);
+		console.log(ani2.arr1);
+
+
+		function Car(){
+			this.arr = new Array('a','s');
+		}
+		var car1 = new Car();
+		var car2 = new Car();
+		car1.arr.push('d');
+		console.log(car1.arr);
+		console.log(car2.arr);
+		//继承者会现寻找原型的属性和方法，没有则再寻找prototype添加的方法
+		//继承者进行继承时，会new一个  新的函数  原型中的引用类型也会被新建，改变一个继承者的  引用类型  其余的继承者不会改变
+	</script>
+</body>
+</html>

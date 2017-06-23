@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		ul,li{
+			list-style: none;
+		}
+		.btnbox{
+			width: 210px;
+			height: 50px;
+			margin: 20px auto;
+			line-height: 50px
+		}
+		button{
+			margin-left: 25px;
+		}
+		.picbox{
+			width: 800px;
+			height: 129.23px;
+			overflow: hidden;
+			position: relative;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+		ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		li{
+			width: 200px;
+			float: left;
+		}
+		img{
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="btnbox">
+		<button class="left">向左</button>
+		<button class="parse">暂停</button>
+		<button class="right">向右</button>
+	</div>
+	<div class="picbox">
+		<ul>
+			<li><img src="1.jpg" alt=""></li>
+			<li><img src="2.jpg" alt=""></li>
+			<li><img src="3.jpg" alt=""></li>
+			<li><img src="4.jpg" alt=""></li>
+			<li><img src="5.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script>
+		var left = document.querySelector(".left");
+		var parse = document.querySelector(".parse");
+		var right = document.querySelector(".right");
+		var ul = document.querySelector("ul");
+		var li = document.getElementsByTagName("li");
+		ul.innerHTML += ul.innerHTML;
+		ul.style.width = li[0].offsetWidth * li.length + "px";
+
+		var speed = 2;
+
+
+		function move(){
+			if(ul.offsetLeft < -ul.offsetWidth/2){
+				ul.style.left = "0";
+			}
+			if(ul.offsetLeft > 0){
+				ul.style.left = -ul.offsetWidth/2 + "px"
+			}
+			ul.style.left = ul.offsetLeft - speed +"px";
+		}
+
+		var time = setInterval(move,30);
+
+		ul.onmouseleave = function(){
+			time = setInterval(move,30);
+		}
+		ul.onmouseenter = function(){
+			clearInterval(time);
+		}
+		left.onclick = function(){
+			speed = 2;
+		}
+		parse.onclick = function(){
+			clearInterval(time);
+		}
+		right.onclick = function(){
+			speed = -2;
+		}
+	</script>
+</body>
+</html>

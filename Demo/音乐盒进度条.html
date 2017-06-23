@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>进度条音乐盒</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			background-color: #cccccc;
+		}
+		.player{
+			width: 100%;
+			height: 45px;
+			background-color: #2d2d2d;
+			border-top: 1px solid #4a4a4a;
+			position: fixed;
+			bottom: 50%;
+		}
+		.slider{
+			width: 500px;
+			height: 10px;
+			background-color: #181818;
+			border-top: 1px solid #0b0b0b;
+			border-bottom: 1px solid #4a4a4a;
+			border-radius: 6px;
+			margin: 20px auto;
+			position: relative;
+		}
+		.slider .buffer{
+			width: 5%;
+			height: 100%;
+			background-color: #535353;
+			border-radius: 6px;
+			position: absolute;
+		}
+		.slider .processor{
+			width: 8px;
+			height: 100%;
+			background-color: #c70c0c;
+			border-radius: 6px;
+			position: absolute;
+			cursor: pointer;
+		}
+		.slider .controller{
+			width: 6px;
+			height: 6px;
+			border: 10px solid #f3f3f6;
+			background-color: rgba(255,255,255,0);
+			border-radius: 50%;
+			position: absolute;
+			top: -8px;
+			left: -8px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="player">
+		<div class="slider">
+			<div class="buffer"></div>
+			<div class="processor"></div>
+			<div class="controller"></div>
+		</div>
+	</div>
+
+	<script>
+		var player = document.querySelector(".player");
+		var slider = document.querySelector(".slider");
+		var buffer = document.querySelector(".buffer");
+		var processor = document.querySelector(".processor");
+		var controller = document.querySelector(".controller");
+		var html = document.querySelector("html");
+
+		var step = 0.05;
+
+		var time = window.setInterval(function(){
+			var sw = slider.offsetWidth;
+			var w = buffer.offsetWidth;
+
+			buffer.style.width = w + sw * step + "px";
+
+			if(w + sw * step == sw){
+				window.clearInterval(time)
+			}
+		},100);
+
+		slider.addEventListener("mousedown",dragDropHandler);
+		slider.addEventListener("mousemove",dragDropHandler);
+		html.addEventListener("mouseup",dragDropHandler);
+
+
+
+
+		var flag = null;
+		function dragDropHandler(event){
+			switch(event.type){
+				case "mousedown":{
+					if(event.target.className === 'controller'){
+						controller.style.display = "none"
+					}
+					flag = true;
+					if(flag){
+						var halfw = controller.offsetWidth;
+						var h = player.offsetWidth - 500;
+						var hw = h/2;
+						var tx = event.clientX - hw;
+						if(tx <= 500 && tx >= 0){
+							controller.style.left = tx - 10 + "px";
+							processor.style.width = tx + 7 + "px";
+						}
+					}
+					break;
+				}
+				case "mousemove":{
+					if(flag){
+						var h = player.offsetWidth - 500;
+						var hw = h/2;
+						var tx = event.clientX - hw;
+						if(tx <= 500 && tx >= 0){
+							controller.style.left = tx - 10 + "px";
+							processor.style.width = tx + 7 + "px";
+						}	
+					}
+					break;
+				}
+				case "mouseup":{
+					controller.style.display = "block";
+					flag = false;
+					break;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

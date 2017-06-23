@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box-1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+			left: 200px;
+			top: 100px;
+		}
+
+		.box-21{
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+		.box-22{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			position: relative;
+			top: 50px;
+			left: 50px;
+		}
+		.box-23{
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+		}
+
+		.box-3{
+			width: 100px;
+			height: 100px;
+			background-color: grey;
+			position: fixed;
+			left: 800px;
+			top: 500px;
+		}
+
+		.box-4{
+			width: 300px;
+			height: 1000px;
+			background-color: red;
+			position: relative;
+		}
+		.box-4-1{
+			width: 100px;
+			height: 100px;
+			background-color: #000;
+			position: absolute;
+			left: 100px;
+			top: 100px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 绝对定位：脱离文档流(不占位) -->
+	<div class="box-1"></div>
+	<h1>shfshfh</h1>
+
+	<!-- 相对定位： 占位，参照原位置0点定位-->
+	<div class="box-21"></div>
+	<div class="box-22"></div>
+	<div class="box-23"></div>
+
+	<!-- 固定定位：相对于电脑窗口定位，页面滚动，位置不改变 -->
+	<div class="box-3"></div>
+
+	<!-- 参照物定位：设置父级为参照物，子集参照父级0点，进行定位 -->
+	<div class="box-4">
+		<div class="box-4-1"></div>
+	</div>
+</body>
+</html>

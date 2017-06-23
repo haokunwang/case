@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<table>
+			<thead>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+			</thead>
+
+			<!-- <tr v-for='student in students'>
+				<td>{{student.name}}</td>
+				<td>{{student.age}}</td>
+				<td>{{student.sex}}</td>
+			</tr> -->
+
+			<tr is="my-tr" v-bind:val='student' v-for='student in students'></tr>
+		</table>
+	</div>
+	<script src='vue.js'></script>
+	<script src="vue-resource.min.js"></script>
+	<script>
+		Vue.component('my-tr',{
+			props:['val'],
+			template:'<tr>\
+				<td>{{val.name}}</td>\
+				<td>{{val.age}}</td>\
+				<td>{{val.sex}}</td>\
+			</tr>'
+		})
+
+
+
+		new Vue({
+			el:'#app',
+			data:{
+				students:[]
+			},
+			mounted:function(){
+				this.getdata()
+			},
+			methods:{
+				getdata:function(){
+					this.$http.get('/data/students.json').then(function(res){
+						this.students = res.data;
+					},function(res){
+						console.log(res)
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

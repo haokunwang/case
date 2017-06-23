@@ -1,0 +1,26 @@
+/*
+* @Author: Administrator
+* @Date:   2017-03-16 16:02:55
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-03-16 16:05:27
+*/
+ *{margin:0; padding:0; font-family: "微软雅黑";}
+a{text-decoration: none; color:#000;}
+.header{width:1349px; height:310px; background:url(../images/1.png); margin: 0 auto;}
+.conter{width:900px; border:1px solid #ececec; padding:15px; clear:both; margin:30px auto 0;}
+.conter .tile{width:352px; height:372px;  border:1px solid #ececec;float:left; margin:10px 45px; padding:1px;}
+.conter .tile:hover{border:1px solid #999;}
+.conter .tile a{display: block; width:350px; height:214px;}
+.conter .tile a img{display: block; width:350px; height:214px;}
+.conter .tile .w-link{display: block; height:64px;}
+.conter .tile .w-link span{display: block; line-height:35px; }
+.conter .tile .w-link .sr{font-size:20px;}
+.conter .tile .w-link .cr{font-size:14px; color:#999;text-indent: 20px; }
+.conter .tile p{ height:40px; margin-top:20px; text-indent: 20px;color:red; }
+.conter .tile p strong{  font-size:24px; text-indent: 20px; }
+.conter .tile p font{  padding-left:5px; font-size:14px; color:#666;text-decoration:line-through;}
+.conter .tile .shop{height:34px; background:#ececec;}
+.conter .tile .shop span{display: block; text-align: center; line-height: 34px; font-size:14px; color:#666; cursor: pointer;}
+.conter .tile .shop span.left{width:120px; float:left;}
+.conter .tile .shop span.left font{color:red; padding-left:5px;}
+.conter .tile .shop span.right{width:150px; float:right;}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="initialize.css">
+	<style>
+		.out{
+			margin: 0 auto;
+			position: relative;
+		}
+		.in{
+			float: left;
+		}
+		.img{
+			margin: 5px;
+			padding: 5px;
+			border: 1px solid #7c4b81;
+			border-radius: 5px;
+			box-shadow: 0 0 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="out">
+		<div class="in">
+			<div class="img"><img src="img/i1.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i2.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i3.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i4.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i5.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i6.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i7.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i8.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i9.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i10.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i11.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i12.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i13.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i14.jpg" alt=""></div>
+		</div>
+		<div class="in">
+			<div class="img"><img src="img/i15.jpg" alt=""></div>
+		</div>
+	</div>
+	<script>
+	window.onload = function(){
+		var imaDate = {
+			"data": [
+				{"src": "i1.jpg"}, {"src": "i2.jpg"}, {"src": "i3.jpg"}, {"src": "i4.jpg"}, {"src": "i5.jpg"}, {"src": "i6.jpg"},
+				{"src": "i7.jpg"}, {"src": "i8.jpg"}, {"src": "i9.jpg"}, {"src": "i10.jpg"}, {"src": "i11.jpg"}, {"src": "i12.jpg"},
+				{"src": "i13.jpg"}, {"src": "i14.jpg"}, {"src": "i15.jpg"}
+			]
+		};
+
+		var out = document.getElementsByClassName("out").item(0); 
+		var myin = document.getElementsByClassName("in");
+		function pbl(){
+			var num = Math.floor(document.documentElement.clientWidth/myin[0].offsetWidth);
+			out.style.width = num * myin[0].offsetWidth + "px";
+			var arr = [];
+			for(let i = 0;i < myin.length;i++){
+				if(i < num){
+					arr.push(myin[i].offsetHeight);
+					myin[i].style.position = "static";
+				}else{
+					var minHeight = Math.min.apply(null,arr);
+					var index = arr.indexOf(minHeight);
+					myin[i].style.position = "absolute";
+					myin[i].style.top = minHeight + "px";
+					myin[i].style.left = myin[index].offsetLeft + "px";
+					arr[index] += myin[i].offsetHeight;
+				}
+			}
+		}
+		window.onresize = function(){
+			pbl();
+		}
+		pbl();
+		window.onscroll = function(){
+			if(pd()){
+				for(let i = 0;i < imaDate.data.length;i++){
+					var img = new Image();
+					img.src = "img/" + imaDate.data[i].src;
+					var div1 = document.createElement("div");
+					div1.className = "img";
+					div1.appendChild(img);
+					var div2 = document.createElement("div");
+					div2.className = "in";
+					div2.appendChild(div1);
+					out.appendChild(div2);
+				}
+			pbl();
+			}
+		}
+		function pd(){
+			var h1 = myin[myin.length-1].offsetTop;
+			var h2 = document.documentElement.clientHeight + (document.documentElement.scrollTop || document.body.scrollTop);
+			return h1<h2?true:false;
+		}
+	}
+	</script>
+</body>
+</html>

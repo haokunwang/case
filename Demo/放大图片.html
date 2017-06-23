@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#piclist li{
+			list-style: none;
+			float: left;
+		}
+		#piclist img{
+			width: 400px;
+		}
+		#picbox img{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<ul id="piclist">
+		<li><img src="../1.jpg" alt=""></li>
+		<li><img src="../2.jpg" alt=""></li>
+		<li><img src="../3.jpg" alt=""></li>
+	</ul>
+	<div id="picbox"></div>
+	<script src="../jquery.js"></script>
+	<script>
+		$("#piclist img").mouseenter(function(){
+			var src = $(this).attr("src");
+			var img = $("<img>");
+			img.attr("src",src);
+			$("#picbox").append(img);
+		}).mouseleave(function(){
+			$("#picbox img").remove();
+		}).mousemove(function(event){
+			var x = event.pageX;
+			var y = event.pageY;
+			$("#picbox img").css({"top":y+10,"left":x+10})
+		})
+	</script>
+</body>
+</html>

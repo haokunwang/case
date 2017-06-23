@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.imgbox{
+			width: 128px;
+			height: 128px;
+			border-radius: 50%;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		body{
+			height: 1000px;
+		}
+	</style>
+</head>
+<body>
+	<div class="imgbox">
+		<img src="../1.jpg" alt="">
+	</div>
+
+	<script>
+		var imgbox = document.querySelector(".imgbox");
+		var time = null;
+		function gq(){
+			var seeHeight = document.documentElement.clientHeight;
+			var seeWidth = document.documentElement.clientWidth;
+			var ys = 0;
+			var yv = 2;
+
+			var xs = 0;
+			var xv = 2;
+		//y轴
+			time = setInterval(function(){
+				ys += yv;
+				imgbox.style.top = ys + "px";
+				if((imgbox.offsetTop + 128 + 2) >= seeHeight){
+					yv = -yv;
+				};
+				if(ys <= 0){
+					yv = -yv;
+				};
+		//x轴
+				xs += xv;
+				imgbox.style.left = xs + "px";
+				if((imgbox.offsetLeft + 128 + 2) >= seeWidth){
+					xv = -xv;
+				};
+				if(xs <= 0){
+					xv = -xv;
+				};
+			},10);
+		}
+
+		window.onclick = function(){
+			clearInterval(time);
+			gq();
+		}
+		
+	</script>
+</body>
+</html>
