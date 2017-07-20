@@ -249,3 +249,11 @@ css3中定义的一种新的布局模式
     </body>
 ```
 
+#其他问题
+<style>
+    /********   可设置 轮播图不随页面的大小改变  而是图片失真 图片按比例变化 **********/
+    background: url("../img/nav_02.png") 50% 0% / auto no-repeat;
+    width: 100%;
+    height: 617px;
+</style>
+<div></div>
